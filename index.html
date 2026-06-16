@@ -2,15 +2,6 @@
   ============================================================
   FLAVIN LAB — Wearable Devices Study sign-up page
   ============================================================
-  TO PUBLISH:
-   1. Replace FORM_URL below with your live Google Form link
-      (the "Live form" URL the Apps Script printed).
-   2. Upload this single file to any free host:
-        - GitHub Pages: drop it in a repo, enable Pages.
-        - Netlify Drop: drag the file onto app.netlify.com/drop.
-   3. The QR code on the page is generated automatically from
-      FORM_URL — no separate image needed.
-  ============================================================
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -122,6 +113,9 @@
   .cell .k{font-family:var(--mono);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
   .cell .v{font-size:19px;margin-top:10px}
   .cell .v small{display:block;color:var(--muted);font-size:14px;margin-top:6px}
+  .loc-link{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim)}
+  .loc-link:hover{border-bottom-color:var(--gold)}
+  .loc-link:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
   /* what to expect */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -188,7 +182,7 @@
       </div>
       <div class="cell">
         <div class="k">Location</div>
-        <div class="v">Van Leer Building<small>Georgia Tech campus, Atlanta</small></div>
+        <div class="v"><a class="loc-link" href="https://www.google.com/maps/search/?api=1&query=Van+Leer+Building+Georgia+Tech" target="_blank" rel="noopener">Van Leer Building ↗</a><small>Georgia Tech campus, Atlanta</small></div>
       </div>
       <div class="cell">
         <div class="k">Compensation</div>
@@ -250,7 +244,7 @@
 </footer>
 
 <script>
-  // ====== EDIT THIS: paste your live Google Form link ======
+  // ====== google form link ======
   const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd7xqQSiw4SD2WPs9FyZif-Z5riZeFEcV-nVNP30EkhzQtstg/viewform";
   // =========================================================
 
