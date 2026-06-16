@@ -1,0 +1,270 @@
+<!--
+  ============================================================
+  FLAVIN LAB — Wearable Devices Study sign-up page
+  ============================================================
+  TO PUBLISH:
+   1. Replace FORM_URL below with your live Google Form link
+      (the "Live form" URL the Apps Script printed).
+   2. Upload this single file to any free host:
+        - GitHub Pages: drop it in a repo, enable Pages.
+        - Netlify Drop: drag the file onto app.netlify.com/drop.
+   3. The QR code on the page is generated automatically from
+      FORM_URL — no separate image needed.
+  ============================================================
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wearable Devices Study — Flavin Neuromachines Lab</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+  :root{
+    --bg:#000000;
+    --panel:#0d0d0d;
+    --ink:#f5f5f3;
+    --muted:#8c8c86;
+    --line:#222220;
+    --gold:#d9b24c;
+    --gold-dim:#8f7530;
+    --display:"Space Grotesk",sans-serif;
+    --body:"Inter",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .pulse{
+    position:absolute;top:50%;left:50%;
+    width:140vmax;height:140vmax;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+    background:
+      radial-gradient(circle, transparent 0 18%, rgba(217,178,76,.05) 18.3% 18.6%, transparent 19%),
+      radial-gradient(circle, transparent 0 30%, rgba(217,178,76,.05) 30.3% 30.6%, transparent 31%),
+      radial-gradient(circle, transparent 0 44%, rgba(217,178,76,.045) 44.3% 44.6%, transparent 45%),
+      radial-gradient(circle, transparent 0 60%, rgba(217,178,76,.04) 60.3% 60.6%, transparent 61%);
+    animation:breathe 7s ease-in-out infinite;
+  }
+  @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.06)}}
+  .hero-inner{position:relative;padding:120px 24px 110px;text-align:center}
+  .logo{
+    width:72px;height:72px;border-radius:50%;
+    object-fit:cover;margin:0 auto 26px;display:block;
+    border:1px solid var(--line);
+    box-shadow:0 0 0 6px rgba(217,178,76,.06);
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(40px,8vw,82px);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin:22px auto 0;
+    max-width:14ch;
+  }
+  .hero .sub{
+    color:var(--muted);
+    font-size:clamp(16px,2.4vw,20px);
+    max-width:50ch;
+    margin:22px auto 0;
+  }
+  .pay-flag{
+    display:inline-block;margin-top:34px;
+    font-family:var(--mono);font-size:13px;letter-spacing:.1em;
+    color:var(--gold);border:1px solid var(--gold-dim);
+    border-radius:999px;padding:8px 18px;
+  }
+  .cta-row{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    font-family:var(--display);font-weight:500;font-size:16px;
+    text-decoration:none;cursor:pointer;border:none;
+    padding:15px 30px;border-radius:6px;transition:transform .15s ease,background .15s ease;
+  }
+  .btn-primary{background:var(--gold);color:#1a1407}
+  .btn-primary:hover{transform:translateY(-2px);background:#e8c062}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--gold-dim);color:var(--gold)}
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  /* ---------- Sections ---------- */
+  section{padding:74px 0}
+  .section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px}
+  .section-head h2{
+    font-family:var(--display);font-weight:500;font-size:clamp(24px,4vw,34px);
+    letter-spacing:-.01em;
+  }
+
+  /* details grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .cell{background:var(--panel);padding:30px}
+  .cell .k{font-family:var(--mono);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+  .cell .v{font-size:19px;margin-top:10px}
+  .cell .v small{display:block;color:var(--muted);font-size:14px;margin-top:6px}
+
+  /* what to expect */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .step{border-top:1px solid var(--gold-dim);padding-top:18px}
+  .step .n{font-family:var(--mono);color:var(--gold);font-size:13px}
+  .step h3{font-family:var(--display);font-weight:500;font-size:18px;margin:10px 0 8px}
+  .step p{color:var(--muted);font-size:15px}
+
+  /* signup / qr */
+  .signup{border:1px solid var(--line);background:var(--panel);border-radius:10px;
+    padding:44px;display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center}
+  .signup h2{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:-.01em}
+  .signup p{color:var(--muted);margin:14px 0 26px;max-width:42ch}
+  .qr-box{background:#fff;padding:16px;border-radius:8px;display:flex;flex-direction:column;align-items:center;gap:10px}
+  #qrcode{width:168px;height:168px}
+  .qr-box span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#555;text-transform:uppercase}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:40px 0 60px;color:var(--muted);font-size:14px}
+  footer a{color:var(--gold);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .footer-name{font-family:var(--display);color:var(--ink);font-size:16px;margin-bottom:4px}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .signup{grid-template-columns:1fr;text-align:center}
+    .signup p{margin-left:auto;margin-right:auto}
+    .qr-box{justify-self:center}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .pulse{animation:none}
+    html{scroll-behavior:auto}
+    .btn:hover{transform:none}
+  }
+</style>
+
+<header class="hero">
+  <div class="pulse" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <img class="logo" src="https://avatars.githubusercontent.com/u/180234413?s=200&v=4" alt="Flavin Neuromachines Lab logo">
+    <div class="eyebrow">Flavin Neuromachines Lab · Georgia Tech</div>
+    <h1>Feel your surroundings.</h1>
+    <p class="sub">We're studying wearable devices that turn information about the world around you into vibrations you can feel — sharpening the senses you already use, or offering new ways to sense what you might otherwise miss. We're looking for volunteers to help shape how these devices work.</p>
+    <div class="pay-flag">$30 per visit</div>
+    <div class="cta-row">
+      <a class="btn btn-primary" id="topSignup" href="#" target="_blank" rel="noopener">Sign up</a>
+      <a class="btn btn-ghost" href="#details">Study details</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="details">
+    <div class="section-head">
+      <span class="eyebrow">01</span>
+      <h2>Logistics</h2>
+    </div>
+    <div class="grid">
+      <div class="cell">
+        <div class="k">Time</div>
+        <div class="v">~2 hours per session</div>
+      </div>
+      <div class="cell">
+        <div class="k">Location</div>
+        <div class="v">Van Leer Building<small>Georgia Tech campus, Atlanta</small></div>
+      </div>
+      <div class="cell">
+        <div class="k">Compensation</div>
+        <div class="v">$30 per visit</div>
+      </div>
+      <div class="cell">
+        <div class="k">Who can join</div>
+        <div class="v">Ages 18–50<small>English-speaking · within 50 miles of Georgia Tech</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">02</span>
+      <h2>What to expect</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">A</div>
+        <h3>Sign up</h3>
+        <p>Pick a session time that works for you and share basic contact details.</p>
+      </div>
+      <div class="step">
+        <div class="n">B</div>
+        <h3>Visit the lab</h3>
+        <p>Come to the Van Leer Building for a single ~2-hour session.</p>
+      </div>
+      <div class="step">
+        <div class="n">C</div>
+        <h3>Share your input</h3>
+        <p>Answer survey questions about bringing a wearable device into daily life. Non-invasive, with no physical risk.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="signup">
+      <div>
+        <h2>Ready to take part?</h2>
+        <p>Participation is voluntary — you can stop at any time. Sign up online or scan the code with your phone.</p>
+        <a class="btn btn-primary" id="mainSignup" href="#" target="_blank" rel="noopener">Open the sign-up form</a>
+      </div>
+      <div class="qr-box">
+        <div id="qrcode"></div>
+        <span>Scan to sign up</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-name">Dulani Wijayarathne</div>
+    PhD Student, Electrical &amp; Computer Engineering · Georgia Institute of Technology<br>
+    Questions? <a href="mailto:dwijayarathne3@gatech.edu">dwijayarathne3@gatech.edu</a>
+  </div>
+</footer>
+
+<script>
+  // ====== EDIT THIS: paste your live Google Form link ======
+  const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd7xqQSiw4SD2WPs9FyZif-Z5riZeFEcV-nVNP30EkhzQtstg/viewform";
+  // =========================================================
+
+  // Wire the buttons to the form
+  document.getElementById("topSignup").href = FORM_URL;
+  document.getElementById("mainSignup").href = FORM_URL;
+
+  // Generate the QR code from the same URL
+  new QRCode(document.getElementById("qrcode"), {
+    text: FORM_URL,
+    width: 168,
+    height: 168,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+</script>
