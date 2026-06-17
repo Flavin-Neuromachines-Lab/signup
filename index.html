@@ -2,6 +2,15 @@
   ============================================================
   FLAVIN LAB — Wearable Devices Study sign-up page
   ============================================================
+  TO PUBLISH:
+   1. Replace FORM_URL below with your live Google Form link
+      (the "Live form" URL the Apps Script printed).
+   2. Upload this single file to any free host:
+        - GitHub Pages: drop it in a repo, enable Pages.
+        - Netlify Drop: drag the file onto app.netlify.com/drop.
+   3. The QR code on the page is generated automatically from
+      FORM_URL — no separate image needed.
+  ============================================================
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,6 +125,7 @@
   .loc-link{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim)}
   .loc-link:hover{border-bottom-color:var(--gold)}
   .loc-link:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .recruit-note{margin-top:24px;color:var(--muted);font-size:15px;max-width:70ch}
 
   /* what to expect */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -158,8 +168,8 @@
   <div class="hero-inner">
     <img class="logo" src="https://avatars.githubusercontent.com/u/180234413?s=200&v=4" alt="Flavin Neuromachines Lab logo">
     <div class="eyebrow">Flavin Neuromachines Lab · Georgia Tech</div>
-    <h1>Feel your surroundings.</h1>
-    <p class="sub">We're studying wearable devices that turn information about the world around you into vibrations you can feel — sharpening the senses you already use, or offering new ways to sense what you might otherwise miss. We're looking for volunteers to help shape how these devices work.</p>
+    <h1>Augmenting how we sense</h1>
+    <p class="sub">The Flavin Neuromachines Lab is developing wearable devices that augment your ability to sense obstacles in the environment around you. We're recruiting volunteers through the Georgia Tech Center for Inclusive Design and Innovation, the Georgia Tech Home Lab, the Georgia Center for the Visually Impaired, and the Georgia Institute of Technology campus.</p>
     <div class="pay-flag">$30 per visit</div>
     <div class="cta-row">
       <a class="btn btn-primary" id="topSignup" href="#" target="_blank" rel="noopener">Sign up</a>
@@ -193,6 +203,7 @@
         <div class="v">Ages 18–50<small>English-speaking · within 50 miles of Georgia Tech</small></div>
       </div>
     </div>
+    <p class="recruit-note">Recruitment is conducted in partnership with the Georgia Tech Center for Inclusive Design and Innovation, the Georgia Tech Home Lab, and the Georgia Center for the Visually Impaired.</p>
   </section>
 
   <section>
@@ -202,17 +213,17 @@
     </div>
     <div class="steps">
       <div class="step">
-        <div class="n">A</div>
+        <div class="n">1</div>
         <h3>Sign up</h3>
         <p>Pick a session time that works for you and share basic contact details.</p>
       </div>
       <div class="step">
-        <div class="n">B</div>
+        <div class="n">2</div>
         <h3>Visit the lab</h3>
         <p>Come to the Van Leer Building for a single ~2-hour session.</p>
       </div>
       <div class="step">
-        <div class="n">C</div>
+        <div class="n">3</div>
         <h3>Share your input</h3>
         <p>Answer survey questions about bringing a wearable device into daily life. Non-invasive, with no physical risk.</p>
       </div>
@@ -244,7 +255,7 @@
 </footer>
 
 <script>
-  // ====== google form link ======
+  // ====== EDIT THIS: paste your live Google Form link ======
   const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd7xqQSiw4SD2WPs9FyZif-Z5riZeFEcV-nVNP30EkhzQtstg/viewform";
   // =========================================================
 
